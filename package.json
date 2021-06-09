@@ -1,10 +1,10 @@
 {
-  "name": "@arelstone/react-native-swipe-button",
-  "version": "0.0.1",
+  "name": "@dillionverma/react-native-swipe-button",
+  "version": "1.0.0",
   "description": "A UI component for displaying a button that can be swiped.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest --notify --detectOpenHandles --color --runInBand --forceExit"
   },
   "keywords": [
@@ -20,39 +20,45 @@
     "animation"
   ],
   "author": {
-    "name": "Carsten Daurehøj <arelstone>",
-    "email": "arelstone@gmail.com",
-    "url": "https://github.com/arelstone"
+    "name": "Dillion Verma <dillionverma>",
+    "email": "hello@dillionverma.com",
+    "url": "https://github.com/dillionverma"
   },
-  "homepage": "https://github.com/arelstone/react-native-swipe-button#readme",
+  "homepage": "https://github.com/dillionverma/react-native-swipe-button",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arelstone/react-native-swipe-button.git"
+    "url": "git+https://github.com/dillionverma/react-native-swipe-button.git"
   },
   "bugs": {
-    "url": "https://github.com/arelstone/react-native-swipe-button/issues"
+    "url": "https://github.com/dillionverma/react-native-swipe-button/issues"
   },
   "license": "ISC",
   "devDependencies": {
-    "@arelstone/eslint-config-react-native-typescript": "^1.0.3",
-    "@types/enzyme": "^3.10.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/enzyme": "^3.10.8",
     "@types/enzyme-adapter-react-16": "^1.0.6",
-    "@types/jest": "^26.0.8",
-    "@types/react": "^16.9.19",
-    "@types/react-native": "^0.61.14",
+    "@types/jest": "^26.0.23",
+    "@types/react": "^17.0.11",
+    "@types/react-native": "^0.64.10",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "eslint": "^6.8.0",
-    "husky": "^5.0.0-alpha.6",
-    "jest": "^25.1.0",
-    "react": "^16.9.21",
-    "react-dom": "^16.12.0",
-    "react-native": "^0.61.5",
-    "ts-jest": "^25.2.1",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "prettier": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-native": "^0.64.2",
+    "ts-jest": "^27.0.3",
     "tslint": "^6.0.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^4.2.0",
-    "typescript": "^3.8.2"
+    "typescript": "^4.3.2"
   },
   "jest": {
     "preset": "react-native",
