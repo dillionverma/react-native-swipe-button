@@ -73,12 +73,12 @@ export type SwipeButtonCommonProps = {
   /**
    * The border radius of the container and the Icon
    *
-   * @default (default height / 2)
+   * @default 100
    */
   borderRadius?: number;
 };
 
-export const DEFAULT_HEIGHT = 70;
+const DEFAULT_HEIGHT = 70;
 const DEFAULT_BORDER_RADIUS = 100;
 const DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE = 100;
 
