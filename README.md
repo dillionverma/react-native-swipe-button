@@ -1,8 +1,6 @@
 # React Native Swipe Button
 
-This component can be used to have an animated tabbar in your react-native app.
-
-A lot of app use the swipe to complete. This is an easy to use and highly customizable page that heklp you so you don't have to write the code over and over again
+This component can be used to have an animated swipable button in your react-native app.
 
 ![npm](https://shields.cdn.bka.li/npm/dt/@dillionverma/react-native-swipe-button?style=for-the-badge)
 ![npm (scoped)](https://shields.cdn.bka.li/npm/v/@dillionverma/react-native-swipe-button?label=version&style=for-the-badge)
