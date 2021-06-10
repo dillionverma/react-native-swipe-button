@@ -29,7 +29,7 @@ yarn add @dillionverma/react-native-swipe-button
 | onComplete                  | () => void **Required** | Callback function that will be invoked when the button has reached the final state |
 | height                      | number                  | The height of the container. Default 70                                            |
 | borderRadius                | number                  | The border radius of the container and button (default: height / 2)                |
-| completeThresholdPercentage | number                  | Determinates when onComplete should be invoked (default: 70)                       |
+| completeThresholdPercentage | number                  | Determinates when onComplete should be invoked (default: 100)                      |
 | containerStyle              | StyleProp<ViewStyle>    | Styling for the container                                                          |
 | underlayStyle               | StyleProp<ViewStyle>    | Styling for the underlay container                                                 |
 | iconContainerStyle          | StyleProp<ViewStyle>    | Styling for the icon container                                                     |
