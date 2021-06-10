@@ -1,4 +1,4 @@
-# @dillionverma/react-native-swipe-button
+# React Native Swipe Button
 
 This component can be used to have an animated tabbar in your react-native app.
 

@@ -61,6 +61,11 @@ interface SwipeButtonProps extends SwipeButtonPropsExtends {
    * Styling for the outer container
    */
   containerStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * Styling for the iconcontainer
+   */
+  iconContainerStyle?: StyleProp<ViewStyle>;
 }
 
 export type SwipeButtonCommonProps = {
