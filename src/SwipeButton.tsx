@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
   Animated,
-  Dimensions,
   GestureResponderEvent,
+  LayoutChangeEvent,
   PanResponder,
   PanResponderGestureState,
   StyleProp,
@@ -13,7 +13,7 @@ import {
 import SwipeButtonCircle, { SwipeButtonCircleProps } from './SwipeButtonCircle';
 import SwipeButtonText, { SwipeButtonTextProps } from './SwipeButtonText';
 
-type SwipeButtonPropsExtends = SwipeButtonCommonProps &
+export type SwipeButtonPropsExtends = SwipeButtonCommonProps &
   Omit<SwipeButtonCircleProps, 'opacity' | 'panHandlers' | 'translateX'> &
   SwipeButtonTextProps;
 
@@ -24,11 +24,11 @@ interface SwipeButtonProps extends SwipeButtonPropsExtends {
   onComplete: () => void;
 
   /**
-   * The with of the button
+   * The width of the button
    *
-   * @default 90% of the screen width
+   * @default 100% of the screen width
    */
-  width?: number;
+  width?: string;
 
   /**
    * If disabled is set to true it will not be possible to interace with the button
@@ -38,7 +38,7 @@ interface SwipeButtonProps extends SwipeButtonPropsExtends {
   /**
    * Indicates when `onComplete` should be invoked.
    *
-   * @default 70
+   * @default 100
    */
   completeThresholdPercentage?: number;
 
@@ -73,20 +73,18 @@ export type SwipeButtonCommonProps = {
   /**
    * The border radius of the container and the Icon
    *
-   * @default (height / 2)
+   * @default 100
    */
   borderRadius?: number;
 };
 
-export const DEFAULT_HEIGHT = 70;
-const DEFAULT_WIDTH = Dimensions.get('window').width * 0.9;
-const DEFAULT_BORDER_RRADIUS = DEFAULT_HEIGHT / 2;
-const DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE = 70;
+const DEFAULT_HEIGHT = 70;
+const DEFAULT_BORDER_RADIUS = 100;
+const DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE = 100;
 
 const SwipeButton = ({
   height = DEFAULT_HEIGHT,
-  width = DEFAULT_WIDTH,
-  borderRadius = DEFAULT_BORDER_RRADIUS,
+  borderRadius = DEFAULT_BORDER_RADIUS,
   title,
   titleContainerProps,
   titleProps,
@@ -96,18 +94,25 @@ const SwipeButton = ({
   underlayStyle,
   disabled,
   Icon,
+  iconContainerStyle,
   containerStyle,
   onComplete,
   onSwipeEnd = () => {},
   onSwipeStart = () => {},
 }: SwipeButtonProps) => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [endReached, setEndReached] = useState<boolean>(false);
   const opacity = disabled ? 0.5 : 1;
-  const opacityStyle = { opacity };
   const [translateX] = useState<Animated.Value>(new Animated.Value(0));
-  const scrollDistance = width - completeThresholdPercentage / 100 - height;
+  const scrollDistance =
+    dimensions.width - completeThresholdPercentage / 100 - dimensions.height;
   const completeThreshold =
     scrollDistance * (completeThresholdPercentage / 100);
+
+  const onLayoutContainer = async (e: LayoutChangeEvent) => {
+    const { width, height } = e.nativeEvent.layout;
+    setDimensions({ width, height });
+  };
 
   const animateToStart = () => {
     Animated.spring(translateX, {
@@ -181,10 +186,11 @@ const SwipeButton = ({
     <View
       style={[
         styles.container,
-        opacityStyle,
+        { opacity },
         containerStyle,
-        { height, width, borderRadius },
+        { height, borderRadius },
       ]}
+      onLayout={onLayoutContainer}
     >
       <SwipeButtonText
         title={title}
@@ -195,30 +201,29 @@ const SwipeButton = ({
         titleContainerStyle={titleContainerStyle}
       />
 
-      {!disabled && (
-        <Animated.View
-          testID="Underlay"
-          style={[
-            styles.underlayContainer,
-            underlayStyle,
-            {
-              width: translateX.interpolate({
-                inputRange: [0, 100],
-                outputRange: [31, 131],
-              }),
-              height,
-            },
-          ]}
-        />
-      )}
+      <Animated.View
+        testID="Underlay"
+        style={[
+          styles.underlayContainer,
+          underlayStyle,
+          {
+            width: translateX.interpolate({
+              inputRange: [0 - height / 2, dimensions.width],
+              outputRange: [height / 2, dimensions.width + height],
+            }),
+            height,
+            borderRadius,
+          },
+        ]}
+      />
 
       <SwipeButtonCircle
         Icon={Icon}
-        opacity={opacity}
         panHandlers={panResponser().panHandlers}
         translateX={translateX}
         borderRadius={borderRadius}
         height={height}
+        iconContainerStyle={iconContainerStyle}
       />
     </View>
   );
@@ -231,7 +236,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignSelf: 'center',
     justifyContent: 'center',
-    marginVertical: 10,
+    width: '100%',
+    height: DEFAULT_HEIGHT,
+    borderRadius: DEFAULT_BORDER_RADIUS,
+    overflow: 'hidden',
   },
   underlayContainer: {
     position: 'absolute',
