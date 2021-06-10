@@ -10,6 +10,13 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import {
+  DEFAULT_BORDER_RADIUS,
+  DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
+  DEFAULT_HEIGHT,
+  DEFAULT_TITLE,
+  DEFAULT_UNDERLAY_COLOR,
+} from './constants';
 import SwipeButtonCircle, { SwipeButtonCircleProps } from './SwipeButtonCircle';
 import SwipeButtonText, { SwipeButtonTextProps } from './SwipeButtonText';
 
@@ -83,14 +90,10 @@ export type SwipeButtonCommonProps = {
   borderRadius?: number;
 };
 
-const DEFAULT_HEIGHT = 70;
-const DEFAULT_BORDER_RADIUS = 100;
-const DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE = 100;
-
 const SwipeButton = ({
   height = DEFAULT_HEIGHT,
   borderRadius = DEFAULT_BORDER_RADIUS,
-  title,
+  title = DEFAULT_TITLE,
   titleContainerProps,
   titleProps,
   titleContainerStyle,
@@ -244,10 +247,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: DEFAULT_HEIGHT,
     borderRadius: DEFAULT_BORDER_RADIUS,
+    borderWidth: 1,
     overflow: 'hidden',
   },
   underlayContainer: {
     position: 'absolute',
-    backgroundColor: '#152228',
+    backgroundColor: DEFAULT_UNDERLAY_COLOR,
   },
 });

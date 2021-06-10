@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ViewStyle,
 } from 'react-native';
+import { DEFAULT_ICON_CONTAINER_COLOR } from './constants';
 import { SwipeButtonCommonProps } from './SwipeButton';
 
 export interface SwipeButtonCircleProps extends SwipeButtonCommonProps {
@@ -72,9 +73,9 @@ export default SwipeButtonCircle;
 const styles = StyleSheet.create({
   iconContainer: {
     position: 'absolute',
-    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: DEFAULT_ICON_CONTAINER_COLOR,
   },
   innerIconContainer: {
     alignItems: 'center',

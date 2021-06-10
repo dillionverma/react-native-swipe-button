@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-  View,
+  StyleProp,
+  StyleSheet,
   Text,
   TextProps,
-  StyleProp,
   TextStyle,
+  View,
   ViewProps,
   ViewStyle,
-  StyleSheet,
 } from 'react-native';
-import { DEFAULT_HEIGHT, SwipeButtonCommonProps } from './SwipeButton';
+import { DEFAULT_HEIGHT, DEFAULT_TEXT_COLOR } from './constants';
+import { SwipeButtonCommonProps } from './SwipeButton';
 
 export interface SwipeButtonTextProps
   extends Omit<SwipeButtonCommonProps, 'borderRadius'> {
@@ -74,9 +75,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#e9ff6b',
     fontSize: 16,
     maxWidth: '50%',
     textAlign: 'center',
+    color: DEFAULT_TEXT_COLOR,
   },
 });
